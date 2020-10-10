@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "217771407218",
+    "firebase_url": "https://ecommer-ea1f2.firebaseio.com",
+    "project_id": "ecommer-ea1f2",
+    "storage_bucket": "ecommer-ea1f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217771407218:android:a9072132cf158c5015cfeb",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217771407218-328g8js9k2b7v07a8jsp2o2o98gr3qo9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtzR6LpCG2t6KB8MTSJJcdzLV07rzeBHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217771407218-328g8js9k2b7v07a8jsp2o2o98gr3qo9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
