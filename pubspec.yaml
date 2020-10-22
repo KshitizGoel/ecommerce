@@ -25,6 +25,10 @@ dependencies:
     sdk: flutter
   splashscreen: 1.2.0
   google_fonts: 1.1.0
+  firebase_core: 0.5.0+1
+  firebase_database: 4.1.1
+  firebase_auth: 0.18.1+2
+  shared_preferences: 0.5.12+2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -49,6 +53,10 @@ flutter:
   assets:
     - image/logo.jpg
     - image/shoppingBags.png
+    - image/clothes.jpg
+    - image/shoes.jpg
+    - image/gaming_stations.png
+    - image/sports.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

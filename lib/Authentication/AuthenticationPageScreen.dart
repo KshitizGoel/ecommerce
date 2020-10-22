@@ -6,6 +6,8 @@ import 'RegisterPageScreen.dart';
 
 
 class AuthenticationPageScreen extends StatefulWidget {
+
+
   @override
   _AuthenticationPageScreenState createState() => _AuthenticationPageScreenState();
 }
@@ -19,6 +21,8 @@ class _AuthenticationPageScreenState extends State<AuthenticationPageScreen> {
       length: 2,
         child: Scaffold(
           appBar: AppBar(
+            elevation: 0,
+            centerTitle: true,
             flexibleSpace: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(

@@ -1,5 +1,9 @@
 import 'package:ecommerce/Authentication/LoginPageScreen.dart';
+import 'package:ecommerce/DialogBox/DialogBox.dart';
+import 'package:ecommerce/HomePageScreen/ProductsPage.dart';
 import 'package:ecommerce/Widgets/CustomTextFields.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,153 +23,159 @@ class RegisterPageScreenState extends State <RegisterPageScreen>{
   TextEditingController _contactNumberTextEditingController = TextEditingController();
   TextEditingController _nameTextEditingController = TextEditingController();
 
+  DatabaseReference dbRef = FirebaseDatabase.instance.reference().child("User Details");
+
+
+  DialogBox alertDialog = DialogBox();
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future <void> savingDataInDatabase() async{
+
+    User firebaseUser;
+
+    await _auth.createUserWithEmailAndPassword(
+        email: _emailTextEditingController.text.trim(),
+        password: _passwordTextEditingController.text).then((auth) {
+      firebaseUser = auth.user;
+    });
+
+    if(firebaseUser != null){
+      savingUserInfoInDatabase(firebaseUser).then((value){
+
+      });
+    }
+  }
+
+  Future <void> savingUserInfoInDatabase (User fUser){
+
+    dbRef.child(fUser.uid).set({
+      "uid" : fUser.uid,
+      "email" : fUser.email,
+      "Name" : _nameTextEditingController.text.trim(),
+      "Email" : _emailTextEditingController.text.trim(),
+      "Contact Number" : _contactNumberTextEditingController.text.trim(),
+      "Password" : _passwordTextEditingController.text.trim(),
+    });
+
+
+    Navigator.push(context, MaterialPageRoute(
+        builder: (context) => ProductsPage()
+    ));
+  }
+
+
   @override
   Widget build(BuildContext context) {
    return Scaffold(
-     body: ListView(
-       children: <Widget>[
+     body: Container(
 
-       Padding(
-         padding: EdgeInsets.all(20.0),
-         child:   getImage(),
+       decoration: BoxDecoration(
+           gradient: LinearGradient(
+               colors: [Colors.blue, Colors.cyan],
+               begin: FractionalOffset(0.0 , 0.0),
+               end: FractionalOffset(1.0, 0.0),
+               stops: [0.0, 1.0],
+               tileMode: TileMode.mirror
+           )
        ),
 
+       child:  ListView(
+         children: <Widget>[
 
-         Padding(
-           padding: EdgeInsets.only(top:15.0, left: 80),
-
-           child: Text(
-             "Register your account",
-             style: GoogleFonts.poppins(
-
-             textStyle: TextStyle(
-               fontWeight: FontWeight.bold,
-               color: Colors.black,
-               fontSize: 20
-             )
-
-             ),
+           Padding(
+             padding: EdgeInsets.all(20.0),
+             child:   getImage(),
            ),
 
-         ),
 
-         Padding(
-           padding: EdgeInsets.only(top: 20, left: 20),
+           Padding(
+             padding: EdgeInsets.only(top:15.0, left: 80),
 
-           child: TextFormField(
+             child: Text(
+               "Register your account",
+               style: GoogleFonts.poppins(
 
-
-             decoration: InputDecoration(
-                 labelText: "Name",
-                 labelStyle: TextStyle(
-                     fontWeight: FontWeight.bold,
-                     color: Colors.black
-                 ),
-                 prefixIcon: Icon(
-                   Icons.account_box,
-                   color: Colors.blue,
-                 )
-
-             ),
-             controller: _nameTextEditingController,
-           ),
-
-         ),
-
-         Padding(
-           padding: EdgeInsets.only(top: 20, left: 20),
-
-           child: TextFormField(
-             obscureText: true,
-             keyboardType: TextInputType.number,
-             decoration: InputDecoration(
-                 labelText: "Contact Number",
-                 labelStyle: TextStyle(
-                     fontWeight: FontWeight.bold,
-                     color: Colors.black
-                 ),
-                 prefixIcon: Icon(
-                   Icons.phone,
-                   color: Colors.blue,
-                 )
-             ),
-             controller: _contactNumberTextEditingController,
-           ),
-
-         ),
-
-         Padding(
-           padding: EdgeInsets.only(top: 20, left: 20),
-
-           child: TextFormField(
-             keyboardType: TextInputType.emailAddress,
-
-             decoration: InputDecoration(
-                 labelText: "Email ID",
-                 labelStyle: TextStyle(
-                     fontWeight: FontWeight.bold,
-                     color: Colors.black
-                 ),
-                 prefixIcon: Icon(
-                   Icons.account_box,
-                   color: Colors.blue,
-                 )
-
-             ),
-             controller: _emailTextEditingController,
-           ),
-
-         ),
-
-         CustomTextFields(_passwordTextEditingController, Icons.lock, "Enter the Password", true),
-
-         Padding(
-             padding: EdgeInsets.only(left:20.0, right: 20.0, bottom: 20.0, top: 50.0),
-
-             child: ButtonTheme(
-
-               height: 50.0,
-
-
-               child: RaisedButton(
-
-                 color: Colors.white,
-
-                 onPressed: (){
-                   //Used in backend for logging in authentically..
-
-
-                 },
-                 child: Column(
-                   children: <Widget>[
-
-                     Icon(
-                         Icons.account_circle,
-                         color:Colors.black
-                     ),
-
-                     Text(
-                       "Register",
-                       style: TextStyle(
-                           fontWeight: FontWeight.bold,
-                           color: Colors.black
-                       ),
-                     )
-
-                   ],
-                 ),
-                 shape: RoundedRectangleBorder(
-                   borderRadius: BorderRadius.circular(25.0),
-
-                 ),
-
+                   textStyle: TextStyle(
+                       fontWeight: FontWeight.bold,
+                       color: Colors.black,
+                       fontSize: 20
+                   )
 
                ),
-             )
-         ),
+             ),
 
-       ],
+           ),
+
+           CustomTextFields(_nameTextEditingController , Icons.assignment_ind , "Enter your name", false , TextInputType.name),
+           CustomTextFields(_contactNumberTextEditingController , Icons.phone , "Enter your contact number" , false , TextInputType.phone),
+           CustomTextFields(_emailTextEditingController , Icons.account_circle , "Enter your Email ID" , false , TextInputType.emailAddress),
+
+           CustomTextFields(_passwordTextEditingController, Icons.lock, "Enter the Password", true, TextInputType.emailAddress),
+
+           Padding(
+               padding: EdgeInsets.only(left:20.0, right: 20.0, bottom: 20.0, top: 50.0),
+
+               child: ButtonTheme(
+
+                 height: 50.0,
+
+
+                 child: RaisedButton(
+
+                   color: Colors.white,
+
+                   onPressed: (){
+
+                     if(
+                     _emailTextEditingController.text.isNotEmpty &&
+                     _nameTextEditingController.text.isNotEmpty &&
+                     _contactNumberTextEditingController.text.isNotEmpty &&
+                     _passwordTextEditingController.text.isNotEmpty
+                     ){
+                       savingDataInDatabase();
+
+                     }else
+                       {
+                         alertDialog.information(context, "Error!", "Please fill all the details!");
+                       }
+
+
+                   },
+                   child: Column(
+                     children: <Widget>[
+
+                       Icon(
+                           Icons.account_circle,
+                           color:Colors.black
+                       ),
+
+                       Text(
+                         "Register",
+                         style: TextStyle(
+                             fontWeight: FontWeight.bold,
+                             color: Colors.black
+                         ),
+                       )
+
+                     ],
+                   ),
+                   shape: RoundedRectangleBorder(
+                     borderRadius: BorderRadius.circular(25.0),
+
+                   ),
+
+
+                 ),
+               )
+           ),
+
+         ],
+       )
+
      )
+
+
    );
   }
 
