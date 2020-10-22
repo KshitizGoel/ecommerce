@@ -8,6 +8,9 @@ class CustomTextFields extends StatelessWidget{
   final IconData data;
   final String labelText;
   bool isObscure = true;
+
+
+
   final TextInputType keyBoardType;
 
   CustomTextFields(this.controller, this.data , this.labelText, this.isObscure, this.keyBoardType);

@@ -2,7 +2,6 @@ import 'package:ecommerce/DialogBox/DialogBox.dart';
 import 'package:ecommerce/HomePageScreen/ProductsPage.dart';
 import 'package:ecommerce/Widgets/CustomTextFields.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,11 +25,14 @@ class LoginPageScreenState extends State<LoginPageScreen>{
   TextEditingController _emailTextEditingController = TextEditingController();
   TextEditingController _passwordTextEditingController = TextEditingController();
 
+  String email , password;
+
   DialogBox alertDialog = DialogBox();
 
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   SharedPreferences prefs;
+
 
   Future <void> _signInWithEmailAndPassword() async{
 
@@ -49,6 +51,9 @@ class LoginPageScreenState extends State<LoginPageScreen>{
 
       });
 
+      email = prefs.setString("_email", _emailTextEditingController.toString()) as String;
+      password = prefs.setString("_password", _passwordTextEditingController.toString()) as String;
+
 
       if(firebaseUser != null){
 
@@ -60,8 +65,7 @@ class LoginPageScreenState extends State<LoginPageScreen>{
 
     } catch(e){
 
-      alertDialog.information(context, "Error!", "The Email and Password does not match! $e Or the user is not Registered!");
-
+        print(e);
     }
  }
 
@@ -104,10 +108,21 @@ class LoginPageScreenState extends State<LoginPageScreen>{
 
             ),
 
-            CustomTextFields(_emailTextEditingController , Icons.account_box , "Email Id" , false , TextInputType.emailAddress),
-            CustomTextFields(_passwordTextEditingController , Icons.lock , "Password" , true, TextInputType.emailAddress),
+            CustomTextFields(_emailTextEditingController ,
+                Icons.account_box ,
+              "Email ID"  ,
+                false ,
+                TextInputType.emailAddress
+            ),
 
 
+
+            CustomTextFields(_passwordTextEditingController ,
+                Icons.lock ,
+               "Password"  ,
+                true,
+                TextInputType.emailAddress
+            ),
 
             Padding(
                 padding: EdgeInsets.only(left:20.0, right: 20.0, bottom: 20.0, top: 50.0),
