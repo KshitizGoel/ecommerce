@@ -1,3 +1,5 @@
+import 'package:ecommerce/DialogBox/DialogBox.dart';
+import 'package:ecommerce/InternalProductsPage/PageForShowingProductsOneCategory.dart';
 import 'package:ecommerce/Widgets/CustomCard.dart';
 import 'package:ecommerce/Widgets/CustomText.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,9 @@ class DisplayingProducts extends StatefulWidget{
 }
 
 class DisplayingProductsState extends State<DisplayingProducts>{
+
+  DialogBox alertDialog = DialogBox();
+
   @override
   Widget build(BuildContext context) {
    return Scaffold(
@@ -34,38 +39,74 @@ class DisplayingProductsState extends State<DisplayingProducts>{
        children: <Widget>[
 
         GestureDetector(
+
+
           onTap: (){
 
+           navigate(PageForOneCategory("Clothes Page is under progress!")) ;
           },
 
           child:  Padding(
                     padding: EdgeInsets.all(10),
                     child: CustomCard("Clothes" , "image/clothes.jpg" , "Shop trendy fashion"),
           ),
-        )      ,
+        ),
 
 
 
-         Padding(
-           padding: EdgeInsets.all(10),
-           child: CustomCard("Shoes" , "image/shoes.jpg" , "Shop all kinds of shoes!"),
+         GestureDetector(
+           onTap: (){
+
+             navigate(PageForOneCategory("Shoes Page is under progress!"));
+
+           },
+
+           child:Padding(
+             padding: EdgeInsets.all(10),
+             child: CustomCard("Shoes" , "image/shoes.jpg" , "Shop all kinds of shoes!"),
+           ),
+
+
          ),
 
-         Padding(
-           padding: EdgeInsets.all(10),
-           child: CustomCard("Gaming Stations" , "image/gaming_stations.png" , "Geeks shopping"),
+         GestureDetector(
+           onTap: (){
+             navigate(PageForOneCategory("Gaming Stations page is under progress!"));
+
+           },
+
+           child:   Padding(
+             padding: EdgeInsets.all(10),
+             child: CustomCard("Gaming Stations" , "image/gaming_stations.png" , "Geeks shopping"),
+           ),
+
          ),
 
-         Padding(
-           padding: EdgeInsets.all(10),
-           child: CustomCard("Sports" , "image/sports.jpg" , "Athlete shopping"),
-         ),
+
+         GestureDetector(
+           onTap: (){
+              navigate( PageForOneCategory("Sports page is under progress!"));
+
+           },
+
+           child: Padding(
+             padding: EdgeInsets.all(10),
+             child: CustomCard("Sports" , "image/sports.jpg" , "Athlete shopping"),
+           ) ,
+
+         )
 
        ],
 
      ),
 
    ) ;
+  }
+
+  void navigate(PageForOneCategory pageForOneCategory){
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) => pageForOneCategory
+    ));
   }
 
 }

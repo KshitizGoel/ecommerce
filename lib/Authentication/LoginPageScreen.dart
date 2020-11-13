@@ -51,21 +51,23 @@ class LoginPageScreenState extends State<LoginPageScreen>{
 
       });
 
-      email = prefs.setString("_email", _emailTextEditingController.toString()) as String;
-      password = prefs.setString("_password", _passwordTextEditingController.toString()) as String;
-
+      // email = prefs.setString("_email", _emailTextEditingController.toString()) as String;
+      // password = prefs.setString("_password", _passwordTextEditingController.toString()) as String;
+      //These are intentionally commented and will be restored.
 
       if(firebaseUser != null){
 
 
-        prefs = await SharedPreferences.getInstance();
-        prefs.setString('key', firebaseUser.toString());
+        print(firebaseUser);
+
+        // prefs = await SharedPreferences.getInstance();
+        // prefs.setString('key', firebaseUser.toString());
       }
 
 
     } catch(e){
 
-        print(e);
+        alertDialog.information(context, "Error :(", "Please enter the Login details correctly! $e");
     }
  }
 
