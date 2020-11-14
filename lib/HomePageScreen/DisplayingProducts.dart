@@ -43,7 +43,9 @@ class DisplayingProductsState extends State<DisplayingProducts>{
 
           onTap: (){
 
-           navigate(PageForOneCategory("Clothes Page is under progress!")) ;
+           navigate(PageForOneCategory("Clothes")) ;
+           //Here we will provide the child name to the PageForOneCategory.dart file which will then retrieve the data from the
+            //Firebase Realtime Database and accordingly fetch the data
           },
 
           child:  Padding(
@@ -57,7 +59,7 @@ class DisplayingProductsState extends State<DisplayingProducts>{
          GestureDetector(
            onTap: (){
 
-             navigate(PageForOneCategory("Shoes Page is under progress!"));
+             navigate(PageForOneCategory("Shoes"));
 
            },
 
@@ -71,7 +73,7 @@ class DisplayingProductsState extends State<DisplayingProducts>{
 
          GestureDetector(
            onTap: (){
-             navigate(PageForOneCategory("Gaming Stations page is under progress!"));
+             navigate(PageForOneCategory("Games"));
 
            },
 
@@ -85,7 +87,7 @@ class DisplayingProductsState extends State<DisplayingProducts>{
 
          GestureDetector(
            onTap: (){
-              navigate( PageForOneCategory("Sports page is under progress!"));
+              navigate( PageForOneCategory("Athletic"));
 
            },
 
