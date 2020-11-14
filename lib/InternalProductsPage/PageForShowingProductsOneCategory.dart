@@ -1,11 +1,13 @@
 import 'package:ecommerce/Widgets/CustomCardForProducts.dart';
 import 'package:ecommerce/Widgets/_CustomText.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 
 class PageForOneCategory extends StatelessWidget{
 
   final String textFromTheMenu;
+
 
   //The above String will act as a child for retrieving the data from the database
   
@@ -14,6 +16,10 @@ class PageForOneCategory extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+
+     String name ;
+     String cost ;
+     bool availability;
 
     //We will use Firebase References to retrieve from the database of different Products!
 
@@ -37,7 +43,7 @@ class PageForOneCategory extends StatelessWidget{
                 true,
                 "699",
                 "Women's Kurta",
-                "image/women_Kurta_one.jpg"
+                "image/Women_kurta_Two.jpg"
               ),
             ),
             Padding(
@@ -55,7 +61,7 @@ class PageForOneCategory extends StatelessWidget{
                   false,
                   "599",
                   "Men's Kurta",
-                  "image/men_Kurta_One.jpg"
+                  "image/Women_kurta_Two.jpg"
               ),
             ),
             Padding(
@@ -64,7 +70,7 @@ class PageForOneCategory extends StatelessWidget{
                   true,
                   "699",
                   "Ethnic Wear",
-                  "image/men_Kurta_Two.jpg"
+                  "image/Women_kurta_Two.jpg"
               ),
             ),
             Padding(
@@ -73,7 +79,7 @@ class PageForOneCategory extends StatelessWidget{
                   true,
                   "699",
                   "Kid's Ethnic Wear",
-                  "image/girld_Child_Kurta.jpg"
+                  "image/Women_kurta_Two.jpg"
               ),
             ),
 

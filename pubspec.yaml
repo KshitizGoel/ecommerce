@@ -59,11 +59,10 @@ flutter:
     - image/shoes.jpg
     - image/gaming_stations.png
     - image/sports.jpg
-    - image/men_Kurta_One.jpg
-    - image/men_Kurta_Two.jpg
-    - image/women_Kurta_one.jpg
     - image/Women_kurta_Two.jpg
-    - image/girld_Child_Kurta.jpg
+    - image/shoesVector.jpg
+    - image/vectorShirt.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

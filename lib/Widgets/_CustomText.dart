@@ -7,6 +7,7 @@ class CustomTextForCategoryProducts extends StatelessWidget{
   final double paddingInset;
   final double fontSize;
 
+
   CustomTextForCategoryProducts(this.textFromTheActivity , this.paddingInset ,this.fontSize);
 
   @override
@@ -23,8 +24,19 @@ class CustomTextForCategoryProducts extends StatelessWidget{
                 color: Colors.black
             )
         ),
+
       ),
+
     );
+  }
+
+}
+
+class IconType extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
   }
 
 }
